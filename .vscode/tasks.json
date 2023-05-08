@@ -1,0 +1,48 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "type": "shell",
+      "windows": {
+        "command": "pwsh.exe",
+        "args": [
+          "-Command",
+          "\"npm run prettier && npm run lint && cd ./htmlhint-server && npm run compile && cd ./.. && cd ./htmlhint && npm run compile && npm run vscode:prepublish && npm run postinstall\""
+        ]
+      },
+      "linux": {
+        "command": "bash",
+        "args": [
+          "-c",
+          "\"npm run prettier && npm run lint && cd ./htmlhint-server && npm run compile && cd ./.. && cd ./htmlhint && npm run compile && npm run vscode:prepublish && npm run postinstall\""
+        ]
+      },
+      "group": {
+        "kind": "build",
+        "isDefault": true
+      },
+      "problemMatcher": [],
+      "label": "build",
+      "detail": "npm run prettier && npm run lint && cd htmlhint-server && npm run compile"
+    },
+    {
+      "type": "shell",
+      "windows": {
+        "command": "pwsh.exe",
+        "args": [
+          "-Command",
+          "\"cd ./htmlhint && vsce package\""
+        ]
+      },
+      "linux": {
+        "command": "bash",
+        "args": [
+          "-c",
+          "\"cd htmlhint && vsce package\""
+        ]
+      },
+      "problemMatcher": [],
+      "label": "package"
+    }
+  ]
+}

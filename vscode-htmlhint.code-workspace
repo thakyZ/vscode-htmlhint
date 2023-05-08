@@ -1,0 +1,14 @@
+{
+	"folders": [
+		{
+			"path": ".."
+		},
+		{
+			"path": "../htmlhint-server"
+		},
+		{
+			"path": "."
+		}
+	],
+	"settings": {}
+}

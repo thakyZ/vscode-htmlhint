@@ -1,0 +1,6 @@
+{
+  "files.exclude": {
+    "htmlhint/**": true,
+    "htmlhint-server/**": true
+  }
+}
