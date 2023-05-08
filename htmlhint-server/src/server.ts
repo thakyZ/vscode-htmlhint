@@ -6,6 +6,7 @@
 import * as path from "path";
 import * as server from "vscode-languageserver";
 import * as htmlhint from "htmlhint";
+import URI from "vscode-uri";
 import fs = require("fs");
 let stripJsonComments: any = require("strip-json-comments");
 
@@ -215,7 +216,7 @@ function trace(message: string, verbose?: string): void {
 
 connection.onInitialize(
   (params: server.InitializeParams, token: server.CancellationToken) => {
-    let rootFolder = params.rootPath;
+    let rootFolder = params.rootUri;
     let initOptions: {
       nodePath: string;
     } = params.initializationOptions;
@@ -265,7 +266,7 @@ function doValidate(
 ): void {
   try {
     let uri = document.uri;
-    let fsPath = server.Files.uriToFilePath(uri);
+    let fsPath = URI.file(uri).fsPath;
     let contents = document.getText();
     let lines = contents.split("\n");
 
@@ -306,8 +307,7 @@ connection.onDidChangeConfiguration((params) => {
 // The watched .htmlhintrc has changed. Clear out the last loaded config, and revalidate all documents.
 connection.onDidChangeWatchedFiles((params) => {
   for (let i = 0; i < params.changes.length; i++) {
-    htmlhintrcOptions[server.Files.uriToFilePath(params.changes[i].uri)] =
-      undefined;
+    htmlhintrcOptions[URI.file(params.changes[i].uri).fsPath] = undefined;
   }
   validateAllTextDocuments(connection, documents.all());
 });
