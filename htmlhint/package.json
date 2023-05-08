@@ -54,6 +54,11 @@
           "type": "object",
           "default": {},
           "description": "The HTMLHint options object to provide args to the HTMLHint command."
+        },
+        "htmlhint.configFile": {
+          "type": "string",
+          "default": ".htmlhintrc",
+          "description": "specify a custom HTMLHint configuration file. Please specify either a path or 'htmlhint.options', but not both."
         }
       }
     }
