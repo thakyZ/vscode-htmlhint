@@ -13,6 +13,7 @@
   },
   "license": "MIT",
   "author": "HTMLHint",
+  "publisher": "nekoboinick",
   "scripts": {
     "lint": "eslint -c .eslintrc.js --ext .ts .",
     "prettier": "prettier --write \"**/*.{js,json,md,ts,yml}\"",
@@ -30,5 +31,8 @@
   },
   "dependencies": {
     "vscode-uri": "^3.0.7"
+  },
+  "__metadata": {
+    "publisherDisplayName": "Neko Boi Nick"
   }
 }
