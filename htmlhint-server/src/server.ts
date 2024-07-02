@@ -68,7 +68,7 @@ function getRange(error: htmlhint.Error, lines: string[]): any {
  */
 function makeDiagnostic(
   problem: htmlhint.Error,
-  lines: string[]
+  lines: string[],
 ): server.Diagnostic {
   return {
     severity: server.DiagnosticSeverity.Warning,
@@ -91,7 +91,7 @@ function getConfiguration(filePath: string): any {
       Object.keys(settings.htmlhint.options).length > 0
     ) {
       throw new Error(
-        `The configuration settings for HTMLHint are invalid. Please specify either 'htmlhint.configFile' or 'htmlhint.options', but not both.`
+        `The configuration settings for HTMLHint are invalid. Please specify either 'htmlhint.configFile' or 'htmlhint.options', but not both.`,
       );
     }
     if (settings.htmlhint.configFile) {
@@ -102,7 +102,7 @@ function getConfiguration(filePath: string): any {
           ? ` (resolves to '${path.resolve(settings.htmlhint.configFile)}')`
           : "";
         throw new Error(
-          `The configuration settings for HTMLHint are invalid. The file '${settings.htmlhint.configFile}'${configFileHint} specified in 'htmlhint.configFile' could not be found.`
+          `The configuration settings for HTMLHint are invalid. The file '${settings.htmlhint.configFile}'${configFileHint} specified in 'htmlhint.configFile' could not be found.`,
         );
       }
     } else if (
@@ -174,7 +174,7 @@ function getErrorMessage(err: any, document: server.TextDocument): string {
     result = <string>err.message;
   } else {
     result = `An unknown error occurred while validating file: ${server.Files.uriToFilePath(
-      document.uri
+      document.uri,
     )}`;
   }
   return result;
@@ -182,7 +182,7 @@ function getErrorMessage(err: any, document: server.TextDocument): string {
 
 function validateAllTextDocuments(
   connection: server.IConnection,
-  documents: server.TextDocument[]
+  documents: server.TextDocument[],
 ): void {
   let tracker = new server.ErrorMessageTracker();
   documents.forEach((document) => {
@@ -197,7 +197,7 @@ function validateAllTextDocuments(
 
 function validateTextDocument(
   connection: server.IConnection,
-  document: server.TextDocument
+  document: server.TextDocument,
 ): void {
   try {
     doValidate(connection, document);
@@ -230,10 +230,10 @@ connection.onInitialize(
       rootFolder,
       "htmlhint",
       nodePath,
-      trace
+      trace,
     ).then(
       (
-        value
+        value,
       ):
         | server.InitializeResult
         | server.ResponseError<server.InitializeError> => {
@@ -253,16 +253,16 @@ connection.onInitialize(
           capabilities: { textDocumentSync: documents.syncKind },
         };
         return result;
-      }
+      },
     );
 
     return result as Thenable<server.InitializeResult>;
-  }
+  },
 );
 
 function doValidate(
   connection: server.IConnection,
-  document: server.TextDocument
+  document: server.TextDocument,
 ): void {
   try {
     let uri = document.uri;

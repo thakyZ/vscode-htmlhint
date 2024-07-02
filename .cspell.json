@@ -1,7 +1,16 @@
 {
   "version": "0.2",
-  "words": ["htmlhint", "htmlhintrc", "mylang", "ruleset", "tagname", "VSIX"],
-  "language": "en-US",
+  "words": [
+    "autobuild",
+    "fnames",
+    "htmlhint",
+    "htmlhintrc",
+    "mylang",
+    "ruleset",
+    "tagname",
+    "VSIX"
+  ],
+  "language": "en,en-US",
   "ignorePaths": [".cspell.json"],
   "useGitignore": true
 }
